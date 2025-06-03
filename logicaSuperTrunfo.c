@@ -1,43 +1,101 @@
 #include <stdio.h>
-
-// Desafio Super Trunfo - Países
-// Tema 2 - Comparação das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de comparação de cartas de cidades. 
-// Siga os comentários para implementar cada parte do desafio.
-
 int main() {
-    // Definição das variáveis para armazenar as propriedades das cidades
-    // Você pode utilizar o código do primeiro desafio
-
+    char estado1[2], codigo1[3], estado2[2], codigo2[3];
+    char cidade1[30], cidade2[30];
+    unsigned long int pop1, pop2;
+    float area1, PIB1, area2, PIB2, densipop1, densipop2, PIBpercapita1, PIBpercapita2, superPoder1, superPoder2;
+    int turismo1, turismo2;
     
-    // Cadastro das Cartas:
-    // Implemente a lógica para solicitar ao usuário que insira os dados das cidades
-    // utilizando a função scanf para capturar as entradas.
-    // utilize o código do primeiro desafio
+    // Entrada das variáveis da carta1
+    printf("Informe a letra do estado de SP:\n");
+    scanf("%1s", estado1);
+    printf("Informe o codigo do estado de SP (ex: 1):\n");
+    scanf("%2s", codigo1);
+    printf("Informe o nome da cidade:\n");
+    scanf("%29s", cidade1);
+    printf("Qual a populacao da cidade %s?\n", cidade1);
+    scanf("%lu", &pop1);
+    printf("Qual a area da cidade %s? (Em KM2):\n", cidade1);
+    scanf("%f", &area1);
+    printf("Qual o PIB da cidade %s? (Em R$):\n", cidade1);
+    scanf("%f", &PIB1);
+    printf("Quantos pontos turisticos a cidade %s possui?\n", cidade1);
+    scanf("%d", &turismo1);
+    
+    // Entrada das variáveis da carta2
+    printf("Informe a letra do estado do RJ:\n");
+    scanf("%1s", estado2);
+    printf("Informe o codigo do estado do RJ (ex: 2):\n");
+    scanf("%2s", codigo2);
+    printf("Informe o nome da cidade:\n");
+    scanf("%29s", cidade2);
+    printf("Qual a populacao da cidade %s?\n", cidade2);
+    scanf("%lu", &pop2);
+    printf("Qual a area da cidade %s? (Em KM2):\n", cidade2);
+    scanf("%f", &area2);
+    printf("Qual o PIB da cidade %s? (Em R$):\n", cidade2);
+    scanf("%f", &PIB2);
+    printf("Quantos pontos turisticos a cidade %s possui?\n", cidade2);
+    scanf("%d", &turismo2);
 
-    // Exemplo:
-    // printf("Digite o código da cidade: ");
-    // scanf("%s", codigo);
-    // 
-    // (Repita para cada propriedade)
+    //Calculo da densidade populacional e da renda per capita, utilizando as variaveis densipop e PIPpercapita
+    densipop1 = (float) pop1 / area1;
+    densipop2 = (float) pop2 / area2;
+    PIBpercapita1 = (float) PIB1 / pop1;
+    PIBpercapita2 = (float) PIB2 / pop2;
+    //Cálculo do super poder
+    superPoder1 = (float) pop1 + area1 + PIB1 + turismo1 + PIBpercapita1 + (1 / densipop1);
+    superPoder2 = (float) pop2 + area2 + PIB2 + turismo2 + PIBpercapita2 + (1 / densipop2);
+    
+    // Saídas das variáveis da carta1
+    // printf("Carta1:\nLetra que representa o estado: %s\nCodigo do estado: %s\nCidade: %s\nPopulacao: %lu\nA cidade possui %.2f KM2\nPIB de R$ %.2f\nDensidade populacional: %.2f pessoas por km2\nRenda per capita: R$ %.2f por pessoa\nPossui %d pontos turisticos\nSuper Poder: %.2f\n\n", estado1, codigo1, cidade1, pop1, area1, PIB1, densipop1, PIBpercapita1, turismo1, superPoder1);
+    
+    // Saídas das variáveis da carta2
+    // printf("Carta2:\nLetra que representa o estado: %s\nCodigo do estado: %s\nCidade: %s\nPopulacao: %lu\nA cidade possui %.2f KM2\nPIB de R$ %.2f\nDensidade populacional: %.2f pessoas por km2\nRenda per capita: R$ %.2f por pessoa\nPossui %d pontos turisticos\nSuper Poder: %.2f\n\n", estado2, codigo2, cidade2, pop2, area2, PIB2, densipop2, PIBpercapita2, turismo2, superPoder2);
 
-    // Comparação de Cartas:
-    // Desenvolva a lógica de comparação entre duas cartas.
-    // Utilize estruturas de decisão como if, if-else para comparar atributos como população, área, PIB, etc.
-
-    // Exemplo:
-    // if (populacaoA > populacaoB) {
-    //     printf("Cidade 1 tem maior população.\n");
-    // } else {
-    //     printf("Cidade 2 tem maior população.\n");
-    // }
-
-    // Exibição dos Resultados:
-    // Após realizar as comparações, exiba os resultados para o usuário.
-    // Certifique-se de que o sistema mostre claramente qual carta venceu e com base em qual atributo.
-
-    // Exemplo:
-    // printf("A cidade vencedora é: %s\n", cidadeVencedora);
-
+    //condicionais if.
+    printf("Resultados:\n");
+    printf("Populacao:\n");
+    if (pop1 > pop2) {
+        printf("Carta 1 venceu!\n(%s: %lu > %s: %lu)\n", cidade1, pop1, cidade2, pop2);
+    } else {
+        printf("Carta 2 venceu!\n(%s: %lu > %s: %lu)\n", cidade2, pop2, cidade1, pop1);
+    }
+    printf("Area total:\n");
+    if (area1 > area2) {
+        printf("Carta 1 venceu!\n(%s: %.2f > %s: %.2f)\n", cidade1, area1, cidade2, area2);
+    } else {
+        printf("Carta 2 venceu!\n(%s: %.2f > %s: %.2f)\n", cidade2, area2, cidade1, area1);
+    }
+    printf("PIB:\n");
+    if (PIB1 > PIB2) {
+        printf("Carta 1 venceu!\n(%s: %.2f > %s: %.2f)\n", cidade1, PIB1, cidade2, PIB2);
+    } else {
+        printf("Carta 2 venceu!\n(%s: %.2f > %s: %.2f)\n", cidade2, PIB2, cidade1, PIB1);
+    }
+    printf("Pontos turisticos:\n");
+    if (turismo1 > turismo2) {
+        printf("Carta 1 venceu!\n(%s: %d > %s: %d)\n", cidade1, turismo1, cidade2, turismo2);
+    } else {
+        printf("Carta 2 venceu!\n(%s: %d > %s: %d)\n", cidade2, turismo2, cidade1, turismo1);
+    }
+    printf("Densidade Populacional:\n");
+    if (densipop1 < densipop2) {
+        printf("Carta 1 venceu!\n(%s: %.2f > %s: %.2f)\n", cidade1, densipop1, cidade2, densipop2);
+    } else {
+        printf("Carta 2 venceu!\n(%s: %.2f > %s: %.2f)\n", cidade2, densipop2, cidade1, densipop1);
+    }
+    printf("PIB per capita:\n");
+    if (PIBpercapita1 > PIBpercapita2) {
+        printf("Carta 1 venceu!\n(%s: %.2f > %s: %.2f)\n", cidade1, PIBpercapita1, cidade2, PIBpercapita2);
+    } else {
+        printf("Carta 2 venceu!\n(%s: %.2f > %s: %.2f)\n", cidade2, PIBpercapita2, cidade1, PIBpercapita1);
+    }
+    printf("Super poder:\n");
+    if (superPoder1 > superPoder2) {
+        printf("Carta 1 venceu!\n(%s: %.2f > %s: %.2f)\n", cidade1, superPoder1, cidade2, superPoder2);
+    } else {
+        printf("Carta 2 venceu!\n(%s: %.2f > %s: %.2f)\n", cidade2, superPoder2, cidade1, superPoder1);
+    }
     return 0;
 }
